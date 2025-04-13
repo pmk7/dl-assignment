@@ -7,6 +7,7 @@ from sklearn.model_selection import train_test_split
 DATASET_ROOT = Path("face_age") 
 
 # Function to convert numeric age to age group
+# Consider removing babies from classication?? Or categorizing seperately from 'child'?
 def get_age_group(age):
     age = int(age)
     if age <= 12:

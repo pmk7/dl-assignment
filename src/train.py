@@ -16,6 +16,35 @@ def train_model(
     task='regression',
     **kwargs
 ):
+    """
+    trains a cnn model for age regression or classification
+
+    Parameters
+    ----------
+    train_csv : str
+        path to training data csv file
+    val_csv : str
+        path to validation data csv file
+    model_name : str
+        name to use when saving the model
+    save_dir : str
+        directory to save trained model
+    img_size : tuple of int
+        size of input images (height, width)
+    grayscale : bool
+        whether to use grayscale images
+    task : str
+        either 'regression' or 'classification'
+    **kwargs : dict
+        additional configuration parameters for model building
+
+    Returns
+    -------
+    model : keras.Model
+        trained model instance
+    history : keras.callbacks.History
+        history object with training metrics
+    """
     os.makedirs(save_dir, exist_ok=True)
 
     # Load datasets
@@ -42,7 +71,7 @@ def train_model(
     # Callbacks
     checkpoint_path = os.path.join(save_dir, model_name + '.keras')
     callbacks = [
-        EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True),
+        EarlyStopping(monitor='val_loss', patience=3, restore_best_weights=True),
         ModelCheckpoint(checkpoint_path, monitor='val_loss', save_best_only=True)
     ]
 
@@ -50,7 +79,7 @@ def train_model(
     history = model.fit(
         train_ds,
         validation_data=val_ds,
-        epochs=30,
+        epochs=kwargs.get('epochs', 20),
         callbacks=callbacks
     )
 
