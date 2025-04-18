@@ -8,21 +8,19 @@ if __name__ == '__main__':
     config = {
         'train_csv': 'processed_csvs/train.csv',
         'val_csv': 'processed_csvs/val.csv',
-        'model_name': 'cnn_regression_3x3_relu_l2_dropout_batchnorm_run6',
-        'task': 'regression',
+        'model_name': 'run13_deep_gap_relu_128',
+        'task': 'classification',
         'grayscale': True,
         'activation': 'relu',
         'kernel_size': 3,
-        'depth': 'shallow',
+        'depth': 'deep',
         'pooling': True,
-        'skip_connections': False,
+        'skip_connections': True,       
         'dense_layers': 2,
-        'dropout_rate': 0.3,
+        'dropout_rate': 0.0,
         'l2_reg': 0.005,
+        'dense_units': [128],
+        'img_size': (128, 128)
     }
 
     train_model(**config)
-    
-    
-# Best Validation MAE: 6.31
-# Best Training MAE: 5.6

@@ -51,12 +51,14 @@ def train_model(
     train_ds = load_dataset(train_csv, img_size, task, grayscale)
     val_ds = load_dataset(val_csv, img_size, task, grayscale, shuffle=False)
 
-    # Determine output units
+    # Determine output units, change if i augment data 
     num_outputs = 1 if task == 'regression' else kwargs.get('num_classes', 6)
 
     # Build model
+    input_shape = (img_size[0], img_size[1], 1 if grayscale else 3)
+    print(f"Building model with input shape: {input_shape}")
     model = build_cnn_model(
-        input_shape=(img_size[0], img_size[1], 1 if grayscale else 3),
+        input_shape=input_shape,
         num_outputs=num_outputs,
         task=task,
         **kwargs
@@ -71,7 +73,7 @@ def train_model(
     # Callbacks
     checkpoint_path = os.path.join(save_dir, model_name + '.keras')
     callbacks = [
-        EarlyStopping(monitor='val_loss', patience=3, restore_best_weights=True),
+        EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True),
         ModelCheckpoint(checkpoint_path, monitor='val_loss', save_best_only=True)
     ]
 
@@ -79,7 +81,7 @@ def train_model(
     history = model.fit(
         train_ds,
         validation_data=val_ds,
-        epochs=kwargs.get('epochs', 20),
+        epochs=kwargs.get('epochs', 30),
         callbacks=callbacks
     )
 
