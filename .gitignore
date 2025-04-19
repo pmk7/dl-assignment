@@ -2,3 +2,4 @@ face_age/
 venv
 src/__pycache__
 models
+best_models

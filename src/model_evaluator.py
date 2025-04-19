@@ -1,19 +1,36 @@
-import argparse
 import os
 from tensorflow.keras.models import load_model
 from data_loader import load_dataset
 
+CLASSFICIATION_PATH='best_models/run12_best_classification_fast_relu_gap_128_shallow.keras'
+CLASSFICIATION_FILTERED_FEMALE_PATH='best_models/run12_best_classification_filtered_female_relu_gap_128_shallow.keras'
+REGRESSION_PATH='best_models/run17_regression_3x3_relu_128_l2_dropout.keras'
+
+# Hardcoded paths and configuration
+MODEL_PATH = CLASSFICIATION_PATH
+TEST_CSV = 'processed_csvs/test.csv'
+TASK = 'classification'
+GRAYSCALE = True
+IMG_SIZE = (128, 128)
+
 
 def evaluate_model(model_path, test_csv, task='regression', grayscale=False):
-    # Load model
     print(f"Loading model: {model_path}")
     model = load_model(model_path)
+    
+    print(model.summary())
+    print(f"Total parameters: {model.count_params():,}")
+    
+    print(model.get_layer('dense').get_config()['kernel_regularizer'])
+
+    # predictions = model.predict()
+    # print(predictions)
 
     # Load test dataset
     print(f"Loading test data from: {test_csv}")
     test_ds = load_dataset(
         test_csv,
-        img_size=(128, 128),
+        img_size=IMG_SIZE,
         task=task,
         grayscale=grayscale,
         batch_size=32,
@@ -31,16 +48,9 @@ def evaluate_model(model_path, test_csv, task='regression', grayscale=False):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--model_path', type=str, required=True)
-    parser.add_argument('--test_csv', type=str, default='processed_csvs/test.csv')
-    parser.add_argument('--task', type=str, choices=['regression', 'classification'], default='regression')
-    parser.add_argument('--grayscale', action='store_true')
-    args = parser.parse_args()
-
     evaluate_model(
-        model_path=args.model_path,
-        test_csv=args.test_csv,
-        task=args.task,
-        grayscale=args.grayscale
+        model_path=MODEL_PATH,
+        test_csv=TEST_CSV,
+        task=TASK,
+        grayscale=GRAYSCALE
     )

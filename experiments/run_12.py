@@ -6,9 +6,9 @@ from src.train import train_model
 
 if __name__ == '__main__':
     config = {
-        'train_csv': 'processed_csvs/train.csv',
-        'val_csv': 'processed_csvs/val.csv',
-        'model_name': 'run12_fast_relu_gap_128_shallow',
+        'train_csv': 'processed_csvs/train_filtered_female.csv',
+        'val_csv': 'processed_csvs/val_filtered_female.csv',
+        'model_name': 'run12_fast_filtered_female_relu_gap_128_shallow',
         'task': 'classification',
         'grayscale': True,
         'activation': 'relu',
@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     train_model(**config)
     
-#  Will select this as my best model for classificiation  model ***
+#  Will select this as my best model for classificiation  model 👑 ***
 #     Epoch 1/20 first run
 # 245/245 ━━━━━━━━━━━━━━━━━━━━ 48s 190ms/step - accuracy: 0.3298 - loss: 3.2034 - val_accuracy: 0.3333 - val_loss: 2.8465
 # Epoch 2/20
@@ -56,6 +56,14 @@ if __name__ == '__main__':
 # 245/245 ━━━━━━━━━━━━━━━━━━━━ 55s 225ms/step - accuracy: 0.5177 - loss: 1.3218 - val_accuracy: 0.1370 - val_loss: 3.3911
 # Epoch 15/20
 # 245/245 ━━━━━━━━━━━━━━━━━━━━ 57s 232ms/step - accuracy: 0.5207 - loss: 1.3118 - val_accuracy: 0.2352 - val_loss: 2.4676
+
+# how it performed on test data:
+#     Loading model: best_models/run12_best_classication_fast_relu_gap_128_shallow.keras
+# Loading test data from: processed_csvs/test.csv
+# Evaluating on test set...
+# 31/31 ━━━━━━━━━━━━━━━━━━━━ 1s 36ms/step - accuracy: 0.5682 - loss: 1.2890 
+# Evaluation Results:
+# Test Loss: 1.2813, Test Accuracy: 58.18%
 
 
 # Building model with input shape: (128, 128, 1) run 2 without Global average pooling and batch normaalization
@@ -89,3 +97,42 @@ if __name__ == '__main__':
 # 245/245 ━━━━━━━━━━━━━━━━━━━━ 60s 243ms/step - accuracy: 0.6563 - loss: 1.0833 - val_accuracy: 0.6431 - val_loss: 1.1400
 # Epoch 15/20
 # 245/245 ━━━━━━━━━━━━━━━━━━━━ 50s 201ms/step - accuracy: 0.6591 - loss: 1.0866 - val_accuracy: 0.6401 - val_loss: 1.1213
+
+
+# Building model with input shape: (128, 128, 1) results for filtered female only
+# Epoch 1/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 14s 154ms/step - accuracy: 0.2510 - loss: 3.4190 - val_accuracy: 0.2764 - val_loss: 2.0730
+# Epoch 2/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 14s 161ms/step - accuracy: 0.3136 - loss: 2.0111 - val_accuracy: 0.3055 - val_loss: 1.8837
+# Epoch 3/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 14s 163ms/step - accuracy: 0.3424 - loss: 1.8731 - val_accuracy: 0.3309 - val_loss: 1.8298
+# Epoch 4/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 15s 176ms/step - accuracy: 0.3785 - loss: 1.8005 - val_accuracy: 0.3673 - val_loss: 1.7329
+# Epoch 5/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 13s 158ms/step - accuracy: 0.3946 - loss: 1.7454 - val_accuracy: 0.4182 - val_loss: 1.6752
+# Epoch 6/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 13s 159ms/step - accuracy: 0.4468 - loss: 1.6476 - val_accuracy: 0.4655 - val_loss: 1.5757
+# Epoch 7/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 13s 156ms/step - accuracy: 0.4760 - loss: 1.5603 - val_accuracy: 0.4618 - val_loss: 1.6023
+# Epoch 8/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 13s 160ms/step - accuracy: 0.5119 - loss: 1.4671 - val_accuracy: 0.4364 - val_loss: 1.5492
+# Epoch 9/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 14s 163ms/step - accuracy: 0.5262 - loss: 1.4194 - val_accuracy: 0.5018 - val_loss: 1.4823
+# Epoch 10/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 14s 165ms/step - accuracy: 0.5576 - loss: 1.3469 - val_accuracy: 0.5018 - val_loss: 1.4408
+# Epoch 11/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 14s 164ms/step - accuracy: 0.5766 - loss: 1.3034 - val_accuracy: 0.4764 - val_loss: 1.4721
+# Epoch 12/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 14s 162ms/step - accuracy: 0.5743 - loss: 1.3187 - val_accuracy: 0.5018 - val_loss: 1.4642
+# Epoch 13/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 14s 164ms/step - accuracy: 0.5867 - loss: 1.2822 - val_accuracy: 0.5345 - val_loss: 1.4216
+# Epoch 14/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 14s 164ms/step - accuracy: 0.5899 - loss: 1.2440 - val_accuracy: 0.5055 - val_loss: 1.4930
+# Epoch 15/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 14s 164ms/step - accuracy: 0.6014 - loss: 1.2370 - val_accuracy: 0.4982 - val_loss: 1.4670
+# Epoch 16/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 14s 166ms/step - accuracy: 0.6156 - loss: 1.2318 - val_accuracy: 0.5018 - val_loss: 1.4995
+# Epoch 17/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 14s 166ms/step - accuracy: 0.6367 - loss: 1.1899 - val_accuracy: 0.5236 - val_loss: 1.4772
+# Epoch 18/20
+# 83/83 ━━━━━━━━━━━━━━━━━━━━ 14s 164ms/step - accuracy: 0.6490 - loss: 1.1417 - val_accuracy: 0.5236 - val_loss: 1.4329

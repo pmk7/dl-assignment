@@ -81,7 +81,7 @@ def train_model(
     history = model.fit(
         train_ds,
         validation_data=val_ds,
-        epochs=kwargs.get('epochs', 30),
+        epochs=kwargs.get('epochs', 20), # default 20, somtimes 30
         callbacks=callbacks
     )
 
