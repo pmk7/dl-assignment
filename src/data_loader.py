@@ -35,7 +35,7 @@ def parse_image(filename, label, img_size=(128, 128), grayscale=False):
 
 def load_dataset(csv_path, img_size=(128, 128), task='regression', grayscale=False, batch_size=32, shuffle=True):
     """
-    loads a dataset from csv with image paths and labels
+    loads a dataset from csv with image paths and labels, with default values which can be overwridden when configuring model
 
     Parameters
     ----------

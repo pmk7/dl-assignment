@@ -1,6 +1,6 @@
 # src/model_builder.py
 import tensorflow as tf
-from tensorflow.keras import layers, models, regularizers
+from keras import layers, models, regularizers
 
 def build_cnn_model(
     input_shape=(128, 128, 3),

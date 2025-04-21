@@ -14,7 +14,7 @@ female_rows = []
 print(female_rows)
 
 for _, row in tqdm(df.iterrows(), total=len(df)):
-    image_path = row["filepath"]  # this should be relative like "face_age/026/5821.png"
+    image_path = row["filepath"]
     try:
         result = DeepFace.analyze(
             img_path=image_path,

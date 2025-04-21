@@ -5,9 +5,11 @@ from data_loader import load_dataset
 CLASSFICIATION_PATH='best_models/run12_best_classification_fast_relu_gap_128_shallow.keras'
 CLASSFICIATION_FILTERED_FEMALE_PATH='best_models/run12_best_classification_filtered_female_relu_gap_128_shallow.keras'
 REGRESSION_PATH='best_models/run17_regression_3x3_relu_128_l2_dropout.keras'
+AUTOENCODER_PATH='best_models/autoencoder.keras'
+TRANSFER_CLASSIFIER_PATH= 'best_models/transfer_classifier.keras'
 
 # Hardcoded paths and configuration
-MODEL_PATH = CLASSFICIATION_PATH
+MODEL_PATH = TRANSFER_CLASSIFIER_PATH
 TEST_CSV = 'processed_csvs/test.csv'
 TASK = 'classification'
 GRAYSCALE = True
