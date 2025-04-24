@@ -5,6 +5,8 @@ from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from .model_builder import build_cnn_model
 from .data_loader import load_dataset
 import tensorflow as tf
+import pandas as pd
+
 
 def train_model(
     train_csv,
@@ -52,7 +54,15 @@ def train_model(
     val_ds = load_dataset(val_csv, img_size, task, grayscale, shuffle=False)
 
     # Determine output units, change if i augment data 
-    num_outputs = 1 if task == 'regression' else kwargs.get('num_classes', 6)
+    # num_outputs = 1 if task == 'regression' else kwargs.get('num_classes', 6)
+    
+    if task == 'regression':
+        num_outputs = 1
+    else:
+        df_train = pd.read_csv(train_csv)
+        if 'label' not in df_train.columns:
+            raise ValueError("Classification task requires a 'label' column in the training CSV.")
+        num_outputs = df_train['label'].nunique()
 
     # Build model
     input_shape = (img_size[0], img_size[1], 1 if grayscale else 3)

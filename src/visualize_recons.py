@@ -13,7 +13,7 @@ GRAYSCALE = True
 # Load trained autoencoder
 model = load_model(MODEL_PATH)
 
-# Load dataset (no shuffling so we can track indices)
+# Load dataset
 ds = load_dataset(
     csv_path=CSV_PATH,
     img_size=IMG_SIZE,

@@ -8,7 +8,7 @@ from data_loader import load_dataset
 # Paths and config
 ENCODER_MODEL_PATH = 'best_models/autoencoder_model.keras'
 CSV_PATH = 'processed_csvs/block2_classification.csv'
-MODEL_SAVE_PATH = 'models/transfer_classifier.keras'
+MODEL_SAVE_PATH = 'models/labelled_transfer_classifier.keras'
 IMG_SIZE = (128, 128)
 INPUT_SHAPE = (128, 128, 1)
 NUM_CLASSES = 6

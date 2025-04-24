@@ -2,6 +2,7 @@
 import tensorflow as tf
 from keras import layers, models, regularizers
 
+
 def build_cnn_model(
     input_shape=(128, 128, 3),
     num_outputs=1,

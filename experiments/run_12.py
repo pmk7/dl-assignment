@@ -8,7 +8,7 @@ if __name__ == '__main__':
     config = {
         'train_csv': 'processed_csvs/train_filtered_female.csv',
         'val_csv': 'processed_csvs/val_filtered_female.csv',
-        'model_name': 'run12_fast_filtered_female_relu_gap_128_shallow',
+        'model_name': 'run12_classification__fast_labelled_filtered_female_relu_gap_128_shallow',
         'task': 'classification',
         'grayscale': True,
         'activation': 'relu',
@@ -21,6 +21,7 @@ if __name__ == '__main__':
         'l2_reg': 0.005,
         'dense_units': [256, 128],
         'img_size': (128, 128),
+        
     }
 
     train_model(**config)

@@ -4,3 +4,4 @@ tensorflow==2.19.0
 deepface==0.0.93
 tf-keras==2.19.0
 matplotlib==3.10.1
+numpy==2.1.3

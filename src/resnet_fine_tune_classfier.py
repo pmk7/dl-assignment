@@ -6,7 +6,7 @@ from data_loader import load_dataset
 
 TRAIN_CSV = "processed_csvs/block2_classification.csv"
 VAL_CSV = "processed_csvs/val_filtered.csv"
-MODEL_SAVE_PATH = "models/resnet50_finetuned_classifier.keras"
+MODEL_SAVE_PATH = "models/resnet50_labelled_finetuned_classifier.keras"
 
 # Parameters
 IMG_SIZE = (224, 224) 
